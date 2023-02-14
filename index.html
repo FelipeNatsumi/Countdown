@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Férias</title>
+      <link rel="stylesheet" href="style.css">
+   </head>
+   <body>
+      <div id = "time">
+         <div class="circle" style="--clr:#ffffff;">
+            <div class="dots day_dot"></div>
+            <svg>
+               <circle cx="70" cy="70" r="70"></circle>
+               <circle cx="70" cy="70" r="70" id="dd"></circle>
+            </svg>
+            <div id="days">00<br><span>Days</span></div>
+         </div>
+         <div class="circle" style="--clr:#ff2972;">
+            <div class="dots hr_dot"></div>
+            <svg>
+               <circle cx="70" cy="70" r="70"></circle>
+               <circle cx="70" cy="70" r="70" id="hh"></circle>
+            </svg>
+            <div id="hours">00</div>
+         </div>
+         <div class="circle" style="--clr:#fee800;">
+            <div class="dots min_dot"></div>
+            <svg>
+               <circle cx="70" cy="70" r="70"></circle>
+               <circle cx="70" cy="70" r="70" id="mm"></circle>
+            </svg>
+            <div id="minutes">00</div>
+         </div>
+         <div class="circle" style="--clr:#04fc43;">
+            <div class="dots sec"></div>
+            <svg>
+               <circle cx="70" cy="70" r="70"></circle>
+               <circle cx="70" cy="70" r="70" id="ss"></circle>
+            </svg>
+            <div id="seconds">00</div>
+         </div>
+      </div>
+      <!-- <h2 class="newYear">2023<br><span>Férias</span></h2>  -->
+
+      <script>
+         var days = document.getElementById('days');
+         var hours = document.getElementById('hours');
+         var minutes = document.getElementById('minutes');
+         var seconds = document.getElementById('seconds');
+
+         var dd = document.getElementById('dd');
+         var hh = document.getElementById('hh');
+         var mm = document.getElementById('mm');
+         var ss = document.getElementById('ss');
+
+         var day_dot = document.querySelector('.day_dot');
+         var hr_dot = document.querySelector('.hr_dot');
+         var min_dot = document.querySelector('.min_dot');
+         var sec_dot = document.querySelector('.sec_dot');
+
+         var endDate = '03/15/2023 00:00:00';
+
+         var x = setInterval(function(){
+            var now = new Date(endDate).getTime();
+            var countDown = new Date().getTime();
+            var distance = now - countDown;
+
+            var d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 *60));   
+            var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var s = Math.floor((distance % (1000 * 60)) / (1000));
+
+            days.innerHTML = d + "<br><span>Days<span>";
+            hours.innerHTML = h + "<br><span>Hours<span>";
+            minutes.innerHTML = m + "<br><span>Minutes<span>";
+            seconds.innerHTML = s + "<br><span>Seconds<span>";
+
+            dd.style.strokeDashoffset = 440 - (440 * d) / 365;
+            hh.style.strokeDashoffset = 440 - (440 * h) / 24;
+            mm.style.strokeDashoffset = 440 - (440 * m) / 60;
+            ss.style.strokeDashoffset = 440 - (440 * s) / 60;
+         })
+
+      </script>
+   </body>
+</html>
